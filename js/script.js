@@ -4,15 +4,13 @@ var precipitaciones = [];
 var viento = [];
 var tiempotodo = ["Despejado","Nublado","Lluvia","Mucha lluvia","Muy nublado"];
 var tiempo = [];
-var numtemperatura;
-var numprecipitaciones;
-var numviento;
 
-for(i=0;i<24;i++){
-    numtemperatura = Math.floor((Math.random() * (26-1))+1);
-    numprecipitaciones = Math.floor((Math.random() * (81-1))+1);
-    numviento = Math.floor((Math.random() * (31-1))+1);
+for(i=0;i<=24;i++){
+    var numtemperatura = Math.floor((Math.random() * (26-1))+1);
+    var numprecipitaciones = Math.floor((Math.random() * (81-1))+1);
+    var numviento = Math.floor((Math.random() * (31-1))+1);
     var aleatoriotiempo = tiempotodo[Math.floor(Math.random() * tiempotodo.length)];
+
     temperatura.push(numtemperatura);
     precipitaciones.push(numprecipitaciones);
     viento.push(numviento);
@@ -35,34 +33,32 @@ onload=function crearTablas(){
                         {backgroundColor: "#EBEBEB"}
                     ],1000)
                     celda.style.backgroundColor = "#EBEBEB";
-                    
                 break;
                 case 1: celda.innerHTML = temperatura[i]+"°";
                     if(temperatura[i]>="20"){
                         celda.animate([
                             {backgroundColor: "transparent"},
-                            {backgroundColor: "#FFB757"}
+                            {backgroundColor: "#FFD295"}
                         ],1000)
-                        celda.style.backgroundColor = "#FFB757";
+                        celda.style.backgroundColor = "#FFD295";
                     }if(temperatura[i]<"20"&&temperatura[i]>="15"){
                         celda.animate([
                             {backgroundColor: "transparent"},
-                            {backgroundColor: "#FFF557"}
+                            {backgroundColor: "#FFF991"}
                         ],1000)
-                        celda.style.backgroundColor = "#FFF557";
+                        celda.style.backgroundColor = "#FFF991";
                     }if(temperatura[i]<"15"){
                         celda.animate([
                             {backgroundColor: "transparent"},
-                            {backgroundColor: "#86FFE8"}
+                            {backgroundColor: "#C5FFF5"}
                         ],1000)
-                        celda.style.backgroundColor = "#86FFE8";
+                        celda.style.backgroundColor = "#C5FFF5";
                     }
                 break;
                 case 2: celda.innerHTML = tiempo[i];
                     switch(celda.innerHTML){
                         case "Despejado": 
                         celda.innerHTML = '<img src=\"../img/Despejado.png" width=\"50px\" height=\"50px\">';
-
                             if(horas > "19"){
                                 celda.innerHTML = '<img src=\"../img/Despejado luna.png" width=\"50px\" height=\"50px\">';
                             }
@@ -82,69 +78,68 @@ onload=function crearTablas(){
                     if(temperatura[i]>="20"){
                         celda.animate([
                             {backgroundColor: "transparent"},
-                            {backgroundColor: "#FFB757"}
+                            {backgroundColor: "#FFD295"}
                         ],1000)
-                        celda.style.backgroundColor = "#FFB757";
+                        celda.style.backgroundColor = "#FFD295";
                     }if(temperatura[i]<"20"&&temperatura[i]>="15"){
                         celda.animate([
                             {backgroundColor: "transparent"},
-                            {backgroundColor: "#FFF557"}
+                            {backgroundColor: "#FFF991"}
                         ],1000)
-                        celda.style.backgroundColor = "#FFF557";
+                        celda.style.backgroundColor = "#FFF991";
                     }if(temperatura[i]<"15"){
                         celda.animate([
                             {backgroundColor: "transparent"},
-                            {backgroundColor: "#86FFE8"}
+                            {backgroundColor: "#C5FFF5"}
                         ],1000)
-                        celda.style.backgroundColor = "#86FFE8";
+                        celda.style.backgroundColor = "#C5FFF5";
                     }
                 break;
                 case 3: celda.innerHTML = precipitaciones[i]+"%";
                 if(temperatura[i]>="20"){
                     celda.animate([
                         {backgroundColor: "transparent"},
-                        {backgroundColor: "#FFB757"}
+                        {backgroundColor: "#FFD295"}
                     ],1000)
-                    celda.style.backgroundColor = "#FFB757";
+                    celda.style.backgroundColor = "#FFD295";
                 }if(temperatura[i]<"20"&&temperatura[i]>="15"){
                     celda.animate([
                         {backgroundColor: "transparent"},
-                        {backgroundColor: "#FFF557"}
+                        {backgroundColor: "#FFF991"}
                     ],1000)
-                    celda.style.backgroundColor = "#FFF557";
+                    celda.style.backgroundColor = "#FFF991";
                 }if(temperatura[i]<"15"){
                     celda.animate([
                         {backgroundColor: "transparent"},
-                        {backgroundColor: "#86FFE8"}
+                        {backgroundColor: "#C5FFF5"}
                     ],1000)
-                    celda.style.backgroundColor = "#86FFE8";
+                    celda.style.backgroundColor = "#C5FFF5";
                 }
                 break;
                 case 4: celda.innerHTML = viento[i]+"km/h";
                 if(temperatura[i]>="20"){
                     celda.animate([
                         {backgroundColor: "transparent"},
-                        {backgroundColor: "#FFB757"}
+                        {backgroundColor: "#FFD295"}
                     ],1000)
-                    celda.style.backgroundColor = "#FFB757";
+                    celda.style.backgroundColor = "#FFD295";
                 }if(temperatura[i]<"20"&&temperatura[i]>="15"){
                     celda.animate([
                         {backgroundColor: "transparent"},
-                        {backgroundColor: "#FFF557"}
+                        {backgroundColor: "#FFF991"}
                     ],1000)
-                    celda.style.backgroundColor = "#FFF557";
+                    celda.style.backgroundColor = "#FFF991";
                 }if(temperatura[i]<"15"){
                     celda.animate([
                         {backgroundColor: "transparent"},
-                        {backgroundColor: "#86FFE8"}
+                        {backgroundColor: "#C5FFF5"}
                     ],1000)
-                    celda.style.backgroundColor = "#86FFE8";
+                    celda.style.backgroundColor = "#C5FFF5";
                 }
                 break;
             }   
             hilera.appendChild(celda);  
         }
-
         tblBody.appendChild(hilera);
     }
     document.getElementById("tablatiempo").appendChild(tblBody);

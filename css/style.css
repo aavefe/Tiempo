@@ -1,16 +1,21 @@
+tr.titulos{
+    background-color: #BABABA;
+    font-size: 20px;
+    font-weight: bold;
+    animation: aparecerfondo 2s;
+}
 table,td{
     border:none;
     text-align: center;
+    font-family: sans-serif;
     animation: aparecertexto 2s;
 }
+
 table{
     width: 100%;
     border-collapse: collapse;
 }
-tr.titulos{
-    background-color: #BABABA;
-    animation: aparecerfondo 2s;
-}
+
 
 @keyframes aparecertexto {
     from {color:transparent;}
