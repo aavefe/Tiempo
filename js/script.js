@@ -5,7 +5,7 @@ var viento = [];
 var tiempotodo = ["Despejado","Nublado","Lluvia","Mucha lluvia","Muy nublado"];
 var tiempo = [];
 
-for(i=0;i<=24;i++){
+for(i=0;i<24;i++){
     var numtemperatura = Math.floor((Math.random() * (26-1))+1);
     var numprecipitaciones = Math.floor((Math.random() * (81-1))+1);
     var numviento = Math.floor((Math.random() * (31-1))+1);
