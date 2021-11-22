@@ -1,3 +1,22 @@
 table,td{
-    border:1px solid black;
+    border:none;
+    text-align: center;
+    animation: aparecertexto 2s;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+tr.titulos{
+    background-color: #BABABA;
+    animation: aparecerfondo 2s;
+}
+
+@keyframes aparecertexto {
+    from {color:transparent;}
+    to {color: black;}
+}
+@keyframes aparecerfondo {
+    from {background-color: transparent;}
+    to {background-color: #BABABA;}
 }
