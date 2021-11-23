@@ -3,24 +3,48 @@ tr.titulos{
     font-size: 20px;
     font-weight: bold;
     animation: aparecerfondo 2s;
+    animation: aparecertexto 2s;
 }
 table,td{
     border:none;
     text-align: center;
     font-family: sans-serif;
-    animation: aparecertexto 2s;
 }
-
 table{
     width: 100%;
     border-collapse: collapse;
 }
-
+div.tiempoactual{
+    font-size: 20px;
+}
+div.datostiempo{
+    display: flex;
+}
+div.datosimportantes{
+    display: flex;
+    font-size:30px;
+}
+div.tiempoactual{
+    font-weight: bold;
+}
+div.tiempogrados{
+    margin-top:15px;
+}
+div.tiempofoto{
+    margin-bottom: 10px;
+}
+div.otrosdatos{
+    margin-top:20px;
+    margin-left:10px;
+    color: #505050;
+    font-size:15px;
+}
 
 @keyframes aparecertexto {
     from {color:transparent;}
     to {color: black;}
 }
+
 @keyframes aparecerfondo {
     from {background-color: transparent;}
     to {background-color: #BABABA;}
