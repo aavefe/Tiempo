@@ -146,10 +146,11 @@ onload=function crearTablas(){
                 var hilera2 = document.createElement("tr");
                 for(var l=0; l<5; l++){
                     var celda2 = document.createElement("td");
+                    hilera2.appendChild(celda2);
                 }
-                hilera2.appendChild(celda2);
+                tblBody2.appendChild(hilera2);
             }
-            tblBody2.appendChild(hilera2);
+            
 
 
             document.getElementById("tablatiempo").appendChild(tblBody);
