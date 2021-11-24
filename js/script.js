@@ -7,8 +7,24 @@ onload=function crearTablas(){
     $.ajax({
         url: url,
         method: 'GET',
-
         success: function(data) {
+            document.getElementById("tabladias").style.display="none";
+            var pestañahoras = document.getElementById("horas");
+            var pestañadias = document.getElementById("dias");
+
+            pestañahoras.onclick=function(){
+                document.getElementById("tablatiempo").style.display="block";
+                document.getElementById("tabladias").style.display="none";
+            }
+
+            pestañadias.onclick=function(){
+                document.getElementById("tablatiempo").style.display="none";
+                document.getElementById("tabladias").style.display="block";
+            }
+
+
+
+
             var divtiempoactual = document.getElementById("tiempoactual");
             var divtiempogrados = document.getElementById("tiempogrados");
             var divtiempofoto = document.getElementById("tiempofoto");
@@ -17,26 +33,28 @@ onload=function crearTablas(){
             var divtiempomin = document.getElementById("tiempomin");
             var divtiempomax = document.getElementById("tiempomax");
             
+
             var tiempoactual = Math.round(data.current.temp - 273.15)+"°";
             var humedadactual = data.current.humidity+"%";
             var tiempoconvertido = Math.round(data.current.wind_speed * 3.6);
+            var iconoactual = '<img src=\"http://openweathermap.org/img/wn/'+data.current.weather[0].icon+'@2x.png" width=\"70px\" height=\"70px\">';
             var vientoactual = tiempoconvertido+"km/h";
             var tiempomin = Math.round(data.daily[0].temp.min - 273.15)+"°";
             var tiempomax = Math.round(data.daily[0].temp.max - 273.15)+"°";
-
+            
             divtiempoactual.innerHTML = data.timezone + ": ";
             divtiempogrados.innerHTML =  tiempoactual;
-            divtiempofoto.innerHTML ='<img src=\"http://openweathermap.org/img/wn/'+data.current.weather[0].icon+'@2x.png" width=\"70px\" height=\"70px\">';
+            divtiempofoto.innerHTML = iconoactual;
             divtiempohumedad.innerHTML= "Humedad: "+humedadactual;
             divtiempoviento.innerHTML="Viento: "+vientoactual;
             divtiempomin.innerHTML = tiempomin;
             divtiempomax.innerHTML = tiempomax;
-
+            
             var tblBody = document.createElement("tbody");
             var d = new Date();
             var horassiguientes = 24 - d.getHours();
             var horaactual = d.getHours();
-
+            
             if(horaactual<"18"&&horaactual>="7"){
                 document.getElementById("titulos").style.backgroundColor = "black";
                 document.getElementById("titulos").style.color = "white";   
@@ -52,15 +70,17 @@ onload=function crearTablas(){
             for(var i=0; i<horassiguientes; i++){     
                 var hilera = document.createElement("tr");
                 for(var j=0; j<5; j++){
+                    
                     var celda = document.createElement("td");
                     var horas = d.getHours()+i;
                     var temperatura = Math.round(data.hourly[i].temp - 273.15);
+                    var icono = '<img src=\"http://openweathermap.org/img/wn/'+data.hourly[i].weather[0].icon+'@2x.png" width=\"70px\" height=\"70px\">';
+                    var viento = Math.round(data.hourly[i].wind_speed * 3.6)+"km/h";
                     switch(j){
                         case 0: celda.innerHTML = horas+":00";
                         if(horas<"18"&&horas>="7"){
                             if (i%2==0) {
                                 celda.style.backgroundColor="#DFDFDF";
-                            
                             } else {
                                 celda.style.backgroundColor="#C3C3C3";
                             }                             
@@ -85,7 +105,7 @@ onload=function crearTablas(){
                             }
                             celda.style.fontSize="18px";
                         break;
-                        case 2: celda.innerHTML = '<img src=\"http://openweathermap.org/img/wn/'+data.hourly[i].weather[0].icon+'@2x.png" width=\"70px\" height=\"70px\">';
+                        case 2: celda.innerHTML = icono;
                             if (i%2==0) {
                                 celda.style.backgroundColor="#FFFF87";
                             
@@ -101,10 +121,9 @@ onload=function crearTablas(){
                             } else {
                                 celda.style.backgroundColor="#C0FFFF";
                             }
-                            
                             celda.style.fontSize="18px";
                         break;
-                        case 4: celda.innerHTML = Math.round(data.hourly[i].wind_speed * 3.6)+"km/h";
+                        case 4: celda.innerHTML = viento;
                         if (i%2==0) {
                             celda.style.backgroundColor="FAFAFA";
                         
@@ -118,41 +137,28 @@ onload=function crearTablas(){
                 }
                 tblBody.appendChild(hilera);
             }
+
+
+            var tblBody2 = document.createElement("tbody");
+            var diaactual = d.getDate();
+
+            for(var k=0; k<7; k++){     
+                var hilera2 = document.createElement("tr");
+                for(var l=0; l<5; l++){
+                    var celda2 = document.createElement("td");
+                }
+                hilera2.appendChild(celda2);
+            }
+            tblBody2.appendChild(hilera2);
+
+
             document.getElementById("tablatiempo").appendChild(tblBody);
-        
-          
+            document.getElementById("tabladias").appendChild(tblBody2);
+
+
         }, error: function(err) {
           alert("Algo ha ido mal al obtener los datos.");
         }
 
     });
 }
-
-
-// function pintaCeldas(){
-            //     if(temperatura>="20"){
-            //         celda.animate([
-            //             {backgroundColor: "transparent",
-            //             color: "transparent"},
-            //             {backgroundColor: "#FFD295",
-            //             color: "black"}
-            //         ],1000)
-            //         celda.style.backgroundColor = "#FFD295";
-            //     }if(temperatura<"20"&&temperatura>="15"){
-            //         celda.animate([
-            //             {backgroundColor: "transparent",
-            //             color: "transparent"},
-            //             {backgroundColor: "#FFF991",
-            //             color: "black"}
-            //         ],1000)
-            //         celda.style.backgroundColor = "#FFF991";
-            //     }if(temperatura<"15"){
-            //         celda.animate([
-            //             {backgroundColor: "transparent",
-            //             color: "transparent"},
-            //             {backgroundColor: "#C5FFF5",
-            //             color: "black"}
-            //         ],1000)
-            //         celda.style.backgroundColor = "#C5FFF5";
-            //     }
-            // }

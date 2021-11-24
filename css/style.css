@@ -13,8 +13,10 @@ table,td{
 }
 table{
     width: 100%;
+    height: 50%;
     margin-top: 15px;
     border-collapse: collapse;
+    
 }
 div.titulotiempo{ 
     font-size: 40px;
@@ -67,17 +69,17 @@ div.tiempodiario{
 div.tiempomin{
     margin-top:3px;
     margin-right: 5px;
-    color: blue;
+    color: #55C6E2;
 }
 div.tiempomax{
     margin-top:3px;
     margin-left: 5px;
-    color: red;
+    color: #EC7A40;
 }
 div.barra{
     margin-top:3px;
+    color: rgb(79, 79, 79);
 }
-
 @media (max-width: 480px) {
 
     div.tiempoactual{
