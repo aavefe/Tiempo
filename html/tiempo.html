@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div class="todo">
         <div class="titulo">
+            <div class="titulotiempo" id="titulotiempo">Tiempo atmosférico</div>
             <div class="tiempoactual" id="tiempoactual"></div>
             <div class="datostiempo">
                 <div class="datosimportantes">
@@ -22,12 +23,19 @@
                     <div class="humedad" id="humedad"></div>
                     <div class="viento" id="viento"></div>
                 </div>
+                <div class="tiempodiario">
+                    <div class="min"></div>
+                    <div class="tiempomin" id="tiempomin"></div>
+                    <div class="barra">/</div>
+                    <div class="max"></div>
+                    <div class="tiempomax" id="tiempomax"></div>
+                </div>
             </div>
         </div>
         
 
         <table id="tablatiempo" >
-            <tr class="titulos">
+            <tr class="titulos" id="titulos">
                 <td>Horas</td>
                 <td>Temperatura</td>
                 <td>Tiempo</td>

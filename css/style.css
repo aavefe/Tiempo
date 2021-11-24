@@ -1,26 +1,38 @@
 body{
     font-family: sans-serif;
+    margin: 0;
 }
 tr.titulos{
-    background-color: #BABABA;
     font-size: 20px;
     font-weight: bold;
-    animation: aparecerfondo 2s;
-    animation: aparecertexto 2s;
+    height: 30px;
 }
 table,td{
-    border: 1px solid grey;
+    border: 2px solid white;
     text-align: center;
 }
 table{
     width: 100%;
+    margin-top: 15px;
     border-collapse: collapse;
 }
-div.tiempoactual{ 
+div.titulotiempo{ 
     font-size: 40px;
+    margin-bottom: 15px;
+    text-align: center;
+    padding:15px;
+    font-weight: bold;
+    width: 100%;
+}
+div.tiempoactual{
+    font-size:25px;
+    margin-top:35px;
+    margin-bottom: 15px;
+    margin-left: 30px;
 }
 div.datostiempo{
     display: flex;
+    justify-content: center;
 }
 div.datosimportantes{
     display: flex;
@@ -43,13 +55,37 @@ div.otrosdatos{
     color: #505050;
     font-size:15px;
 }
-
-@keyframes aparecertexto {
-    from {color:transparent;}
-    to {color: black;}
+div.tiempodiario{
+    display: flex;
+    border-left: 2px solid grey;
+    margin-left: 7%;
+    padding-left: 7%;
+    margin-bottom: 25px;
+    margin-top: 10px;
+    font-size: 40px;
+}
+div.tiempomin{
+    margin-top:3px;
+    margin-right: 5px;
+    color: blue;
+}
+div.tiempomax{
+    margin-top:3px;
+    margin-left: 5px;
+    color: red;
+}
+div.barra{
+    margin-top:3px;
 }
 
-@keyframes aparecerfondo {
-    from {background-color: transparent;}
-    to {background-color: #BABABA;}
+@media (max-width: 480px) {
+
+    div.tiempoactual{
+        margin-left: 0px;
+        margin-right: 0px;
+        text-align: center;
+    }
+    div.tiempodiario{
+        display: none;
+    }
 }
