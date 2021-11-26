@@ -129,6 +129,10 @@ div.alertas{
     color: rgb(87, 87, 87);
     font-size:15px;
 }
+img.cargando{
+    margin:25%;
+    width: 50%;
+}
 @media (max-width: 480px) {
 
     div.tiempoactual{
