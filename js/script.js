@@ -78,7 +78,6 @@ function crearTablas(){
                     var vientoactual = tiempoconvertido+"km/h";
                     var tiempomin = Math.round(data.daily[0].temp.min - 273.15)+"°";
                     var tiempomax = Math.round(data.daily[0].temp.max - 273.15)+"°";
-                    // var alertas = data.alerts[0].event;
                     
                     divtiempoactual.innerHTML = data2.locality + " / "+data2.countryName + ": ";
                     divtiempogrados.innerHTML =  tiempoactual;
@@ -87,7 +86,12 @@ function crearTablas(){
                     divtiempoviento.innerHTML="Viento: "+vientoactual;
                     divtiempomin.innerHTML = tiempomin;
                     divtiempomax.innerHTML = tiempomax;
-                    // alertasdiv.innerHTML = alertas;
+                    
+                    if(data.alertas != undefined){
+                        var alertas = data.alerts[0].event;
+                        alertasdiv.innerHTML = alertas;
+                    }
+                    
                     
                     var tblBody = document.createElement("tbody");
                     var d = new Date();
