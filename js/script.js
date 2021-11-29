@@ -1,20 +1,18 @@
-
 onload=function(){
     document.getElementById("todo").style.display= "none";
-
 }
-
 
 navigator.geolocation.getCurrentPosition(function(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     crearTablas();
-  },
-  function(error) {
+},
+function(error) {
     if (error.code == error.PERMISSION_DENIED)
         document.getElementById("todo").style.display = "none";
         alert("Tienes que permitir la localización en esta WEB.");
-  });
+        location.reload();
+    });
 
 function crearTablas(){
     var url = "https://api.openweathermap.org/data/2.5/onecall?lat="+latitude+"&lon="+longitude+"&appid=0d9c10c5a3c178421490bf45919685b9";
@@ -45,6 +43,7 @@ function crearTablas(){
                         pestañadias.style.backgroundColor = "black";
                         pestañamañana.style.backgroundColor="black";
                     }
+
                     pestañamañana.onclick=function mañanaVisible(){
                         document.getElementById("tablatiempo").style.display="none";
                         document.getElementById("tabladias").style.display="none";
@@ -53,6 +52,7 @@ function crearTablas(){
                         pestañadias.style.backgroundColor = "black";
                         pestañamañana.style.backgroundColor="#3A3939";
                     }
+
                     pestañadias.onclick=function diasVisible(){
                         document.getElementById("tablatiempo").style.display="none";
                         document.getElementById("tabladias").style.display="table";
@@ -86,34 +86,17 @@ function crearTablas(){
                     divtiempoviento.innerHTML="Viento: "+vientoactual;
                     divtiempomin.innerHTML = tiempomin;
                     divtiempomax.innerHTML = tiempomax;
-                    
+
                     if(data.alertas != undefined){
                         var alertas = data.alerts[0].event;
                         alertasdiv.innerHTML = alertas;
                     }
-                    
                     
                     var tblBody = document.createElement("tbody");
                     var d = new Date();
                     var horassiguientes = 24 - d.getHours();
                     var horaactual = d.getHours();
                     
-                    if(horaactual<"18"&&horaactual>="7"){
-                        document.getElementById("titulos").style.backgroundColor = "black";
-                        document.getElementById("titulos").style.color = "white";   
-                        document.getElementById("titulos3").style.backgroundColor = "black";
-                        document.getElementById("titulos3").style.color = "white";   
-                        document.getElementById("titulotiempo").style.backgroundColor = "black";
-                        document.getElementById("titulotiempo").style.color = "white";   
-                    }else{
-                        document.getElementById("titulos").style.backgroundColor = "grey";
-                        document.getElementById("titulos").style.color = "black";
-                        document.getElementById("titulos3").style.backgroundColor = "grey";
-                        document.getElementById("titulos3").style.color = "black";
-                        document.getElementById("titulotiempo").style.backgroundColor = "grey";
-                        document.getElementById("titulotiempo").style.color = "white";
-                    }
-        
                     for(var i=0; i<horassiguientes; i++){     
                         var hilera = document.createElement("tr");
                         for(var j=0; j<5; j++){
@@ -124,7 +107,7 @@ function crearTablas(){
                             var viento = Math.round(data.hourly[i].wind_speed * 3.6)+"km/h";
                             switch(j){
                                 case 0: celda.innerHTML = horas+":00";
-                                    if(horas<"18"&&horas>="7"){
+                                    if(horas<"18"&&horas>"7"){
                                         if (i%2==0) {
                                             celda.style.backgroundColor="#DFDFDF";
                                         } else {
@@ -172,7 +155,7 @@ function crearTablas(){
                                 break;
                                 case 4: celda.innerHTML = viento;
                                     if (i%2==0) {
-                                        celda.style.backgroundColor="FAFAFA";
+                                        celda.style.backgroundColor="#FAFAFA";
                                     
                                     } else {
                                         celda.style.backgroundColor="#EFEFEF";
@@ -196,7 +179,7 @@ function crearTablas(){
                             var vientodaily = Math.round(data.daily[k].wind_speed * 3.6)+"km/h";
                             var celda2 = document.createElement("td");
                             var semanas = d.getDay()+k;
-                            var diassemana = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
+                            var diassemana = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
                             
                             switch(l){
                                 case 0: 
@@ -244,7 +227,7 @@ function crearTablas(){
                                 break;
                                 case 4: celda2.innerHTML = vientodaily;
                                     if (k%2==0) {
-                                        celda2.style.backgroundColor="FAFAFA";
+                                        celda2.style.backgroundColor="#FAFAFA";
                                     
                                     } else {
                                         celda2.style.backgroundColor="#EFEFEF";
@@ -265,7 +248,7 @@ function crearTablas(){
                             var diasiguiente=25-d.getHours();
                             switch(n){
                                 case 0: celda3.innerHTML = m+":00";
-                                if(m<"18"&&m>="7"){
+                                if(m<"18"&&m>"7"){
                                     if (m%2==0) {
                                         celda3.style.backgroundColor="#DFDFDF";
                                     } else {
@@ -284,7 +267,7 @@ function crearTablas(){
                                     celda3.style.fontWeight="bold";
                                     celda3.style.width="95px";
                                 break;
-                                case 1: celda3.innerHTML = Math.round(data.hourly[diasiguiente+m].temp - 273.15)+"°";
+                                case 1: celda3.innerHTML = Math.round(data.hourly[diasiguiente+m-1].temp - 273.15)+"°";
                                     if (m%2==0) {
                                         celda3.style.backgroundColor="#FFB66C";
                                     
@@ -293,7 +276,7 @@ function crearTablas(){
                                     }
                                     celda3.style.fontSize="18px";
                                 break;
-                                case 2: celda3.innerHTML = '<img src=\"http://openweathermap.org/img/wn/'+data.hourly[diasiguiente+m].weather[0].icon+'@2x.png" width=\"70px\" height=\"70px\">';
+                                case 2: celda3.innerHTML = '<img src=\"http://openweathermap.org/img/wn/'+data.hourly[diasiguiente+m-1].weather[0].icon+'@2x.png" width=\"70px\" height=\"70px\">';
                                     if (m%2==0) {
                                         celda3.style.backgroundColor="#FFFF87";
                                     
@@ -302,7 +285,7 @@ function crearTablas(){
                                     }
                                     celda3.style.fontSize="18px";
                                 break;
-                                case 3: celda3.innerHTML = data.hourly[diasiguiente+m].humidity+"%";
+                                case 3: celda3.innerHTML = data.hourly[diasiguiente+m-1].humidity+"%";
                                     if (m%2==0) {
                                         celda3.style.backgroundColor="#99FFFF";
                                     
@@ -311,9 +294,9 @@ function crearTablas(){
                                     }
                                     celda3.style.fontSize="18px";
                                 break;
-                                case 4: celda3.innerHTML = Math.round(data.hourly[diasiguiente+m].wind_speed * 3.6)+"km/h";
+                                case 4: celda3.innerHTML = Math.round(data.hourly[diasiguiente+m-1].wind_speed * 3.6)+"km/h";
                                     if (m%2==0) {
-                                        celda3.style.backgroundColor="FAFAFA";
+                                        celda3.style.backgroundColor="#FAFAFA";
                                     
                                     } else {
                                         celda3.style.backgroundColor="#EFEFEF";
